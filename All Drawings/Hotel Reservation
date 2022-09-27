@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-09-27T03:10:37.691Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" etag="B7vpvU1bZeTnZLNBgsvG" version="20.3.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-09-27T15:20:09.152Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" etag="4TwiF19pu4IVUsCe9KHz" version="20.3.6" type="github">
   <diagram id="qrlExnlPgB-C_9XEbw1_" name="Page-1">
     <mxGraphModel dx="1038" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -7,10 +7,10 @@
         <mxCell id="gtX2vKVFcCAOMp1uC_Wu-1" value="Functional Requirements&lt;br&gt;1. marriot.com or hotels.com: marriot.com&lt;br&gt;2. User provisioning? via SSO systems&lt;br&gt;3. Reservation for multiple units across the country&lt;br&gt;4. User enters destination city, check-in, and check-out dates.&lt;br&gt;5. Results come back&lt;br&gt;6. Don&#39;t worry about daily rates for various hotel locations.&lt;br&gt;7. Hotels have different room types (with room rates).&lt;br&gt;8. Loyalty membership - ignore.&lt;br&gt;&lt;br&gt;Non-functional Requirements&lt;br&gt;1. High consistency&lt;br&gt;2. Good search response times.&lt;br&gt;3. High search (read) volume system vs. not so high writes.&lt;br&gt;4. Geo-location based search&lt;br&gt;&lt;br&gt;Sizing/Scale&lt;br&gt;1. DAU: 50,000 (not a very high read system)&lt;br&gt;2. DB sizing:&amp;nbsp;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;hotel details:1 MB per entry (5000 hotels across the US: 5000 * 100 KB = 5 GB)&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;reservations: user_id, hotel_id: 1KB. 5000 * 160 * .6 = 5000 * 1000 * 1KB: 5000 MB = 5GB per day&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; 5 year usage: 5 * 5 * 400 GB = 10000 GB = 10 TB" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="30" y="10" width="310" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="gtX2vKVFcCAOMp1uC_Wu-2" value="API Design&lt;br&gt;&lt;br&gt;1. getHotelAvailability:&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Type: GET&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Input: { Location, Check-in date, Check-out date, Radius }&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Returns: { HashMap&amp;lt;Hotel, List&amp;lt;RoomType&amp;gt;&amp;gt; }&lt;br&gt;&lt;br&gt;2. bookHotelRoom&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Type: POST&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Input: { auth_token, check-in date, check-out date, hotel id, room&amp;nbsp; type }&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Returns: { Success + Confirmation ID, or Failure + Reason of failure }&lt;br&gt;&lt;br&gt;3. getHotelDetails&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Type: GET&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Input: { hotel id }&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Output: { Hotel Name, Hotel Address, Details (Average Star Rating, Amenities, &lt;br&gt;Description), List&amp;lt;Pictures&amp;gt;}&lt;br&gt;&lt;br&gt;4. getRoomDetails&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Type: GET&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Input: {hotel id, room type}&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Output: { Details (Amenities), List of Pictures }&lt;br&gt;&lt;br&gt;5. cancelReservation&lt;br&gt;Type: POST&lt;br&gt;Input: { auth_token, confirmation id}&lt;br&gt;Output: {Success or failure}" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="gtX2vKVFcCAOMp1uC_Wu-2" value="API Design&lt;br&gt;&lt;br&gt;1. getHotelAvailability:&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Type: GET&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Input: { Location, Check-in date, Check-out date, Radius }&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Returns: { HashMap&amp;lt;Hotel, List&amp;lt;RoomType&amp;gt;&amp;gt; }&lt;br&gt;&lt;br&gt;2. bookHotelRoom&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Type: POST&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Input: { auth_token, check-in date, check-out date, hotel id, room&amp;nbsp; type, payment information}&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Returns: { Success + Confirmation ID + Transaction ID, or Failure + Reason of failure }&lt;br&gt;&lt;br&gt;3. getHotelDetails&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Type: GET&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Input: { hotel id }&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Output: { Hotel Name, Hotel Address, Details (Average Star Rating, Amenities, &lt;br&gt;Description), List&amp;lt;Pictures&amp;gt;}&lt;br&gt;&lt;br&gt;4. getRoomDetails&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Type: GET&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Input: {hotel id, room type}&lt;br&gt;&lt;span style=&quot;&quot;&gt; &lt;/span&gt;Output: { Details (Amenities), List of Pictures }&lt;br&gt;&lt;br&gt;5. cancelReservation&lt;br&gt;Type: POST&lt;br&gt;Input: { auth_token, confirmation id}&lt;br&gt;Output: {Success or failure}" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="365" y="10" width="435" height="380" as="geometry" />
         </mxCell>
-        <mxCell id="gtX2vKVFcCAOMp1uC_Wu-3" value="&lt;b&gt;Hotel (NoSQL Document Type)&lt;/b&gt;&lt;br&gt;ID: Primary Key&lt;br&gt;Details: { Name, Address, Description, List of Pictures }&lt;br&gt;&lt;br&gt;&lt;b&gt;Room&amp;nbsp;(NoSQL Document Type)&lt;/b&gt;&lt;br&gt;ID: Primary Key&lt;br&gt;Details: { Room Name, Bed Types, Description, Amentiies, List of Pictures }&lt;br&gt;&lt;br&gt;&lt;b&gt;HotelRoomAvailability&lt;/b&gt;&lt;br&gt;Hotel ID: Foreign Key&lt;br&gt;Room Type: Foreign Key&lt;br&gt;Number Available: Number&lt;br&gt;&lt;br&gt;&lt;b&gt;Reservations&lt;br&gt;&lt;/b&gt;ID: Primary Key (aka confirmation ID)&lt;br&gt;UserID: Foreign Key&lt;br&gt;Hotel ID: Foreign Key&lt;br&gt;Room Type: ID&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="gtX2vKVFcCAOMp1uC_Wu-3" value="&lt;b&gt;Hotel (NoSQL Document Type)&lt;/b&gt;&lt;br&gt;ID: Primary Key&lt;br&gt;Details: { Name, Address, Description, List of Pictures }&lt;br&gt;&lt;br&gt;&lt;b&gt;Room&amp;nbsp;(NoSQL Document Type)&lt;/b&gt;&lt;br&gt;ID: Primary Key&lt;br&gt;Details: { Room Name, Bed Types, Description, Amentiies, List of Pictures }&lt;br&gt;&lt;br&gt;&lt;b&gt;HotelRoomAvailability&lt;/b&gt;&lt;br&gt;Hotel ID: Foreign Key&lt;br&gt;Room Type: Foreign Key&lt;br&gt;Number Available: Number&lt;br&gt;&lt;br&gt;&lt;b&gt;Reservations&lt;br&gt;&lt;/b&gt;ID: Primary Key (aka confirmation ID)&lt;br&gt;UserID: Foreign Key&lt;br&gt;Hotel ID: Foreign Key&lt;br&gt;Room Type: ID&amp;nbsp;&lt;br&gt;TransactionID:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="800" y="10" width="350" height="290" as="geometry" />
         </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-1" target="5ToPlD0hqiY9T60MmJsO-3">
@@ -49,13 +49,13 @@
         <mxCell id="5ToPlD0hqiY9T60MmJsO-5" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.mscae.enterprise.server_farm" vertex="1" parent="1">
           <mxGeometry x="740" y="570" width="50" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="5ToPlD0hqiY9T60MmJsO-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-7" target="5ToPlD0hqiY9T60MmJsO-19">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-7" target="5ToPlD0hqiY9T60MmJsO-12">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.133;entryY=0.077;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-7" target="5ToPlD0hqiY9T60MmJsO-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5ToPlD0hqiY9T60MmJsO-56" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-7" target="5ToPlD0hqiY9T60MmJsO-55">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-7" value="getHotelAvailability" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -65,6 +65,9 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-8" target="5ToPlD0hqiY9T60MmJsO-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5ToPlD0hqiY9T60MmJsO-67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-8" target="5ToPlD0hqiY9T60MmJsO-66">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-8" value="bookHotelRoom" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -88,6 +91,9 @@
         <mxCell id="5ToPlD0hqiY9T60MmJsO-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-11" target="5ToPlD0hqiY9T60MmJsO-22">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="5ToPlD0hqiY9T60MmJsO-64" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-11" target="5ToPlD0hqiY9T60MmJsO-63">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-11" value="getRoomDetailsAbbr" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="610" y="753" width="120" height="60" as="geometry" />
         </mxCell>
@@ -104,14 +110,17 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="5ToPlD0hqiY9T60MmJsO-65" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-12" target="5ToPlD0hqiY9T60MmJsO-62">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-12" value="getHotelDetailsAbbr" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="475" y="756" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-19" value="Hotel Rooms DB" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
-          <mxGeometry x="400" y="640" width="60" height="80" as="geometry" />
+          <mxGeometry x="202" y="640" width="60" height="80" as="geometry" />
         </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-20" value="Reservations&lt;br&gt;DB" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
-          <mxGeometry x="1000" y="740" width="80" height="80" as="geometry" />
+          <mxGeometry x="1000" y="796" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-21" value="Hotel Details DB" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
           <mxGeometry x="495" y="896" width="80" height="80" as="geometry" />
@@ -127,6 +136,9 @@
             <mxPoint x="1190" y="770" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="5ToPlD0hqiY9T60MmJsO-68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-39" target="5ToPlD0hqiY9T60MmJsO-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-39" value="cancelReservation" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1130" y="698" width="120" height="60" as="geometry" />
         </mxCell>
@@ -134,10 +146,31 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-46" value="Object Storage" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#005F4B;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam2.object_storage;" vertex="1" parent="1">
-          <mxGeometry x="400" y="420" width="68" height="70" as="geometry" />
+          <mxGeometry x="400" y="428" width="68" height="70" as="geometry" />
         </mxCell>
         <mxCell id="5ToPlD0hqiY9T60MmJsO-47" value="CDN" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/app_services/CDN_Profiles.svg;" vertex="1" parent="1">
-          <mxGeometry x="542" y="435" width="68" height="40" as="geometry" />
+          <mxGeometry x="542" y="443" width="68" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5ToPlD0hqiY9T60MmJsO-57" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-55" target="5ToPlD0hqiY9T60MmJsO-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5ToPlD0hqiY9T60MmJsO-61" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="5ToPlD0hqiY9T60MmJsO-55" target="5ToPlD0hqiY9T60MmJsO-60">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5ToPlD0hqiY9T60MmJsO-55" value="Search Service" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="350" y="660" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5ToPlD0hqiY9T60MmJsO-60" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.cache_node;fillColor=#2E73B8;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="360" y="560" width="60" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="5ToPlD0hqiY9T60MmJsO-62" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.cache_node;fillColor=#2E73B8;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="383" y="754.5" width="60" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="5ToPlD0hqiY9T60MmJsO-63" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.cache_node;fillColor=#2E73B8;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="770" y="754.5" width="60" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="5ToPlD0hqiY9T60MmJsO-66" value="Payment Gateway (Square)" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/credit_card-128.png" vertex="1" parent="1">
+          <mxGeometry x="1290" y="572" width="49" height="49" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
