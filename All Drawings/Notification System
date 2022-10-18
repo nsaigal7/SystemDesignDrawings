@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-10-18T03:41:36.118Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="DhcjX62cGqsraZvIZjAI" version="20.4.1" type="github">
+<mxfile host="app.diagrams.net" modified="2022-10-18T03:42:28.392Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="UgxeozdxNquDsLOuny7u" version="20.4.1" type="github">
   <diagram id="PHVsk9HuMSp2Nu_1mDbn" name="Page-1">
     <mxGraphModel dx="1038" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -94,6 +94,9 @@
         </mxCell>
         <mxCell id="1lJi6Xs5zNKa6pgZ1DMp-37" value="Notification Details`" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="255" y="319" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1lJi6Xs5zNKa6pgZ1DMp-38" value="Add rate limiting" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="315" y="200" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
